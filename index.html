@@ -333,12 +333,407 @@
     .ac3-flash { animation: ac3Flash 400ms ease forwards; }
 
     @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+    
+    /* Horror Dark Mode Overrides */
+    html.theme-horror {
+      --bg          : #0a0a0f;
+      --surface     : #0f0f1a;
+      --surface-2   : #13131f;
+      --border      : #1e1e3a;
+      --border-2    : #2a1a2e;
+      --text        : #d4c8b8;
+      --text-2      : #8a7a6a;
+      --text-3      : #4a3f35;
+      --accent      : #8b1a1a;
+      --accent-light: #1a0808;
+      --green       : #2d5a1b;
+      --green-light : #0a1208;
+      --orange      : #7a3a0a;
+      --orange-light: #150a02;
+      --red         : #8b0000;
+      --red-light   : #150000;
+      --yellow      : #6b5a00;
+      --yellow-light: #100e00;
+      --sev-1       : #1a4a1a;
+      --sev-2       : #3a4a0a;
+      --sev-3       : #4a3a00;
+      --sev-4       : #5a2000;
+      --sev-5       : #6b0000;
+      --shadow      : 0 2px 8px rgba(0,0,0,0.6), 0 0 30px rgba(139,26,26,0.05);
+      --shadow-md   : 0 4px 20px rgba(0,0,0,0.8), 0 0 60px rgba(139,26,26,0.08);
+    }
+    html.theme-horror body {
+      font-family: 'Courier New', 'Courier', monospace;
+      background-color: #0a0a0f;
+      background-image:
+        linear-gradient(rgba(30,20,40,0.4) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30,20,40,0.4) 1px, transparent 1px),
+        radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%);
+      background-size: 60px 60px, 60px 60px, 100% 100%;
+    }
+
+    /* ── Global text glow — every visible text color glows with its own color ── */
+
+    /* Primary text */
+    html.theme-horror body,
+    html.theme-horror h1, html.theme-horror h2, html.theme-horror h3,
+    html.theme-horror p, html.theme-horror span, html.theme-horror label,
+    html.theme-horror button, html.theme-horror div {
+      text-shadow: 0 0 8px rgba(200,184,168,0.35), 0 0 20px rgba(200,184,168,0.12);
+    }
+
+    /* Kill glow on elements that have backgrounds — badges, pills, inputs */
+    html.theme-horror .badge,
+    html.theme-horror .badge-accent,
+    html.theme-horror .status-badge,
+    html.theme-horror .sufficiency-pill,
+    html.theme-horror .unit-status,
+    html.theme-horror .speed-btn,
+    html.theme-horror .speed-btn.active,
+    html.theme-horror input,
+    html.theme-horror .tab-btn,
+    html.theme-horror .level-card {
+      text-shadow: none;
+      box-shadow: none;
+    }
+
+    /* Secondary text */
+    html.theme-horror .text-2,
+    html.theme-horror .resource-sub,
+    html.theme-horror .stat-sub,
+    html.theme-horror .level-hint {
+      text-shadow: 0 0 6px rgba(138,122,106,0.5), 0 0 16px rgba(138,122,106,0.2);
+    }
+
+    /* Accent blue — tabs active */
+    html.theme-horror .tab-btn.active {
+      text-shadow: 0 0 8px rgba(74,111,165,0.7), 0 0 20px rgba(74,111,165,0.3);
+    }
+
+    /* Green — treated / available */
+    html.theme-horror .suff-sufficient {
+      text-shadow: 0 0 8px rgba(22,163,74,0.7), 0 0 20px rgba(22,163,74,0.3);
+    }
+
+    /* Orange — busy / limited */
+    html.theme-horror .suff-limited {
+      text-shadow: 0 0 8px rgba(234,88,12,0.7), 0 0 20px rgba(234,88,12,0.3);
+    }
+
+    /* Red — critical / deceased */
+    html.theme-horror .suff-critical,
+    html.theme-horror .log-entry.deceased {
+      text-shadow: 0 0 10px rgba(220,38,38,0.8), 0 0 25px rgba(220,38,38,0.4);
+    }
+
+    /* Mono numbers — stat values */
+    html.theme-horror .mono,
+    html.theme-horror .stat-value {
+      text-shadow: 0 0 10px rgba(139,26,26,0.8), 0 0 25px rgba(139,26,26,0.4), 0 0 50px rgba(139,26,26,0.15);
+    }
+   
+    @keyframes screenFlicker {
+      0%,  95%, 100% { opacity: 1; }
+      96%            { opacity: 0.85; }
+      97%            { opacity: 1; }
+      98%            { opacity: 0.7; }
+      99%            { opacity: 1; }
+    }
+    html.theme-horror .card,
+    html.theme-horror .patient-card,
+    html.theme-horror .resource-card,
+    html.theme-horror .unit-card,
+    html.theme-horror .stat-card {
+      background    : var(--surface);
+      border        : 1px solid var(--border);
+      border-radius : 4px;
+      box-shadow    : 0 0 0 1px rgba(139,26,26,0.1), inset 0 1px 0 rgba(255,255,255,0.02), 0 4px 20px rgba(0,0,0,0.7);
+    }
+    html.theme-horror .severity-5-card { border-left: 3px solid #6b0000 !important; }
+    html.theme-horror .severity-4-card { border-left: 3px solid #5a2000 !important; }
+    html.theme-horror .severity-3-card { border-left: 3px solid #4a3a00 !important; }
+    html.theme-horror .severity-2-card { border-left: 3px solid #3a4a0a !important; }
+    html.theme-horror .severity-1-card { border-left: 3px solid #1a4a1a !important; }
+    html.theme-horror .navbar {
+      background   : #08080f;
+      border-bottom: 1px solid #1e1e3a;
+      box-shadow   : 0 4px 0 #050508, 0 5px 15px rgba(0,0,0,0.7), 0 0 60px rgba(0,0,0,0.4);
+      transform: none;
+      transform-origin: top center;
+    }
+    html.theme-horror .status-dot.running {
+      background : #8b1a1a;
+      box-shadow : 0 0 0 0 rgba(139,26,26,0.7);
+      animation  : bloodPulse 2s infinite;
+    }
+    @keyframes bloodPulse {
+      0%   { box-shadow: 0 0 0 0   rgba(139,26,26,0.7); }
+      70%  { box-shadow: 0 0 0 8px rgba(139,26,26,0);   }
+      100% { box-shadow: 0 0 0 0   rgba(139,26,26,0);   }
+    }
+    html.theme-horror button.primary, html.theme-horror .btn-primary {
+      background    : #8b1a1a;
+      border        : 1px solid #6b0000;
+      color         : #d4c8b8;
+      text-shadow   : 0 1px 2px rgba(0,0,0,0.5);
+      box-shadow    : 0 0 15px rgba(139,26,26,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
+      letter-spacing: 1px;
+      transition    : all 150ms ease;
+    }
+    html.theme-horror button.primary:hover:not(:disabled), html.theme-horror .btn-primary:hover:not(:disabled) {
+      background : #a52020;
+      box-shadow : 0 0 25px rgba(139,26,26,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+    html.theme-horror button.ghost, html.theme-horror .btn-ghost {
+      background : transparent;
+      border     : 1px solid #2a1a2e;
+      color      : #8a7a6a;
+    }
+    html.theme-horror button.ghost:hover:not(:disabled), html.theme-horror .btn-ghost:hover:not(:disabled) {
+      border-color: #8b1a1a;
+      color       : #d4c8b8;
+      background  : transparent;
+    }
+    html.theme-horror .progress-bar-fill {
+      background: linear-gradient(90deg, #4a0000, #8b1a1a, #c41e1e);
+      box-shadow: 0 0 8px rgba(139,26,26,0.5);
+      animation : bloodFlow 2s ease infinite;
+    }
+    @keyframes bloodFlow {
+      0%, 100% { box-shadow: 0 0 4px  rgba(139,26,26,0.3); }
+      50%      { box-shadow: 0 0 12px rgba(139,26,26,0.7); }
+    }
+    html.theme-horror .event-log-panel .log-list {
+      background     : #080810;
+      border         : 1px solid #1e1e3a;
+      font-family    : 'Courier New', monospace;
+      font-size      : 12px;
+      letter-spacing : 0.3px;
+    }
+    html.theme-horror .log-entry { color: #6a5a4a; }
+    html.theme-horror .log-entry.arrival         { color: #3a5a8a; }
+    html.theme-horror .log-entry.treatment_start { color: #2d5a1b; }
+    html.theme-horror .log-entry.treatment_done  { color: #3a6a2a; }
+    html.theme-horror .log-entry.ac3_eliminated  { color: #5a2a6a; }
+    html.theme-horror .log-entry.deceased        { color: #8b0000; text-shadow: 0 0 6px rgba(139,0,0,0.4); }
+    html.theme-horror .log-entry.at_risk         { color: #7a3a0a; animation: logFlicker 1.5s infinite; }
+    html.theme-horror .log-entry.warning         { color: #6b3a00; }
+    @keyframes logFlicker {
+      0%, 100% { opacity: 1; }
+      50%      { opacity: 0.6; }
+    }
+    html.theme-horror .log-entry:first-child::after {
+      content   : "_";
+      animation : blink 1s step-end infinite;
+      color     : #8b1a1a;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%      { opacity: 0; }
+    }
+    html.theme-horror .patient-card,
+    html.theme-horror .resource-card,
+    html.theme-horror .unit-card {
+      transition : box-shadow 300ms ease;
+    }
+    html.theme-horror .patient-card:hover {
+      transform  : none;
+      box-shadow : -4px 8px 20px rgba(0,0,0,0.8), 0 0 20px rgba(139,26,26,0.2), inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+    html.theme-horror .resource-card:hover, html.theme-horror .unit-card:hover {
+      transform  : none;
+      box-shadow : 4px 8px 20px rgba(0,0,0,0.8), 0 0 15px rgba(139,26,26,0.15);
+    }
+    html.theme-horror .stat-card {
+      transform  : none;
+      transition : box-shadow 300ms ease;
+      box-shadow : 0 8px 0 #060608, 0 10px 20px rgba(0,0,0,0.7), 0 0 40px rgba(139,26,26,0.05);
+    }
+    html.theme-horror .stat-card:hover {
+      transform  : none;
+      box-shadow : 0 12px 0 #060608, 0 14px 28px rgba(0,0,0,0.8), 0 0 50px rgba(139,26,26,0.1);
+    }
+    html.theme-horror .tab-content {
+      transform  : none;
+      box-shadow : 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(139,26,26,0.08);
+    }
+    html.theme-horror .severity-5-card::before {
+      content    : "";
+      position   : absolute;
+      top        : -1px;
+      left       : 10%;
+      right      : 10%;
+      height     : 3px;
+      background : linear-gradient(90deg, transparent 0%, #8b0000 20%, #c41e1e 50%, #8b0000 80%, transparent 100%);
+      box-shadow : 0 2px 8px rgba(139,0,0,0.6);
+      border-radius: 0 0 4px 4px;
+    }
+    html.theme-horror .resource-ecg.busy .resource-icon::after {
+      content    : "";
+      position   : absolute;
+      bottom     : -8px;
+      left       : 0;
+      right      : 0;
+      height     : 2px;
+      background : linear-gradient(90deg, #0f0f1a 0%, #0f0f1a 30%, #8b1a1a 35%, #c41e1e 40%, #8b1a1a 45%, #0f0f1a 50%, #0f0f1a 100%);
+      background-size: 200% 100%;
+      animation  : heartbeat 1.2s ease-in-out infinite;
+    }
+    @keyframes heartbeat {
+      0%   { background-position: 100% 0; }
+      100% { background-position: -100% 0; }
+    }
+    html.theme-horror .comp-header {
+      color      : #c4b8a0;
+      text-shadow: 0 0 7px  rgba(196,184,160,0.6), 0 0 21px rgba(196,184,160,0.3);
+      animation  : fluorescent 6s linear infinite;
+    }
+    @keyframes fluorescent {
+      0%,  19%, 21%, 23%, 25%, 54%, 56%, 100% { text-shadow: 0 0 7px  rgba(196,184,160,0.6), 0 0 21px rgba(196,184,160,0.3); }
+      20%, 24%, 55% { text-shadow: none; opacity: 0.8; }
+    }
+    html.theme-horror .resource-card.available::after, html.theme-horror .unit-card.available::after {
+      display: none;
+    }
+    html.theme-horror.emergency-active #horror-overlay::before {
+      content    : "";
+      position   : fixed;
+      inset      : 0;
+      background : rgba(139,0,0,0.06);
+      animation  : emergencyLight 2s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes emergencyLight {
+      0%, 100% { opacity: 0;   }
+      50%      { opacity: 1;   }
+    }
+
+    /* ── Scanlines — CRT monitor effect over the whole page ── */
+    html.theme-horror body::before {
+      content    : "";
+      position   : fixed;
+      inset      : 0;
+      background : repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.08) 2px,
+        rgba(0,0,0,0.08) 4px
+      );
+      pointer-events : none;
+      z-index        : 9999;
+      animation      : scanMove 8s linear infinite;
+    }
+    @keyframes scanMove {
+      from { background-position: 0 0; }
+      to   { background-position: 0 100px; }
+    }
+
+    /* ── Blood drip from navbar bottom edge ── */
+    html.theme-horror .navbar::after {
+      content    : "";
+      position   : absolute;
+      bottom     : -8px;
+      left       : 0;
+      right      : 0;
+      height     : 8px;
+      background : url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='8'%3E%3Cellipse cx='10' cy='0' rx='2' ry='5' fill='%238b0000'/%3E%3Cellipse cx='30' cy='0' rx='1.5' ry='4' fill='%236b0000'/%3E%3Cellipse cx='55' cy='0' rx='2.5' ry='7' fill='%238b0000'/%3E%3Cellipse cx='80' cy='0' rx='1.5' ry='4' fill='%237a0000'/%3E%3Cellipse cx='105' cy='0' rx='2' ry='6' fill='%238b0000'/%3E%3C/svg%3E") repeat-x top center;
+      background-size : 120px 8px;
+      pointer-events  : none;
+      z-index         : 99;
+      opacity         : 0.7;
+    }
+
+    /* ── Severity-5 patient card — pulsing blood border ── */
+    html.theme-horror .patient-card[style*="--sev-5"] {
+      animation: sevFivePulse 1.5s ease-in-out infinite;
+    }
+    @keyframes sevFivePulse {
+      0%, 100% { box-shadow: 0 0 0 1px rgba(139,0,0,0.3), 0 0 8px  rgba(139,0,0,0.2); }
+      50%      { box-shadow: 0 0 0 2px rgba(200,0,0,0.6), 0 0 20px rgba(200,0,0,0.4); }
+    }
+
+    /* ── Stat card — mortality count gets a blood-red glow ── */
+    html.theme-horror .stat-card[data-stat="mortality"] {
+      border-color : #3a0000;
+      box-shadow   : 0 0 0 1px rgba(139,0,0,0.3), 0 0 20px rgba(139,0,0,0.15), inset 0 0 30px rgba(80,0,0,0.1);
+      animation    : mortalityBreath 3s ease-in-out infinite;
+    }
+    @keyframes mortalityBreath {
+      0%, 100% { box-shadow: 0 0 0 1px rgba(139,0,0,0.3), 0 0 20px rgba(139,0,0,0.15); }
+      50%      { box-shadow: 0 0 0 1px rgba(180,0,0,0.5), 0 0 35px rgba(180,0,0,0.3);  }
+    }
+
+    /* ── Event log — new entry flash ── */
+    html.theme-horror .log-entry:first-child {
+      animation: newEntry 0.4s ease forwards;
+    }
+    @keyframes newEntry {
+      from { background: rgba(139,0,0,0.15); }
+      to   { background: transparent; }
+    }
+
+    /* ── Level cards — horror border glow on active ── */
+    html.theme-horror .level-card.active {
+      box-shadow : 0 0 0 1px rgba(139,26,26,0.6), 0 0 20px rgba(139,26,26,0.2);
+      animation  : levelGlow 2s ease-in-out infinite;
+    }
+    @keyframes levelGlow {
+      0%, 100% { box-shadow: 0 0 0 1px rgba(139,26,26,0.4), 0 0 15px rgba(139,26,26,0.15); }
+      50%      { box-shadow: 0 0 0 1px rgba(180,26,26,0.7), 0 0 30px rgba(180,26,26,0.3);  }
+    }
+
+    /* ── Resource unit cards — busy units get a red heartbeat border ── */
+    html.theme-horror .unit-card.unit-busy {
+      animation: unitHeartbeat 1.8s ease-in-out infinite;
+    }
+    @keyframes unitHeartbeat {
+      0%, 100% { border-color: var(--border); }
+      40%      { border-color: rgba(139,26,26,0.6); box-shadow: 0 0 12px rgba(139,26,26,0.25); }
+      60%      { border-color: rgba(139,26,26,0.6); box-shadow: 0 0 12px rgba(139,26,26,0.25); }
+    }
+
+    /* ── Comparison panel — horror header ── */
+    html.theme-horror .comp-header {
+      color      : #c41e1e;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px rgba(196,30,30,0.7), 0 0 30px rgba(139,26,26,0.4), 0 0 60px rgba(100,0,0,0.2);
+    }
+
+    /* ── Queue panel header — dripping count badge ── */
+    html.theme-horror .queue-panel .badge {
+      background : rgba(80,0,0,0.4);
+      border     : 1px solid rgba(139,0,0,0.4);
+      color      : #c41e1e;
+      text-shadow: 0 0 6px rgba(196,30,30,0.6);
+    }
+
+    /* ── Scrollbar — dark blood style ── */
+    html.theme-horror ::-webkit-scrollbar       { width: 6px; background: #080810; }
+    html.theme-horror ::-webkit-scrollbar-thumb { background: #3a0000; border-radius: 3px; }
+    html.theme-horror ::-webkit-scrollbar-thumb:hover { background: #6b0000; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html.theme-horror * { animation: none !important; }
+    }
+    
+    *, *::before, *::after {
+      transition: background-color 400ms ease, border-color 400ms ease, color 300ms ease, box-shadow 400ms ease;
+    }
+    .progress-bar-fill, canvas, #horror-overlay {
+      transition: none !important;
+    }
   </style>
 </head>
 <body>
 
   <!-- 1. Sticky Navigation Bar -->
   <nav class="navbar">
+    <button id="theme-toggle" class="btn-ghost btn-icon" title="Toggle theme" aria-label="Toggle theme" style="padding: 4px; border-radius: 50%;">
+      <svg id="icon-light" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg id="icon-horror" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M9 12h.01"/><path d="M15 12h.01"/><path d="M12 2a8 8 0 0 0-8 8v4c0 1.1.9 2 2 2h20c1.1 0 2-.9 2-2v-4a8 8 0 0 0-8-8z"/><path d="M9 18v2a3 3 0 0 0 6 0v-2"/></svg>
+    </button>
     <div class="logo-container">
       <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
@@ -685,11 +1080,36 @@
     ];
 
     // ── PHASE 3 CLASSES ────────────────────────────────────────────────
+    function getChartColors() {
+      const isHorror = document.documentElement.classList.contains("theme-horror");
+      return isHorror
+        ? {
+            csp       : "#8b1a1a",
+            fcfs      : "#3a5a8a",
+            grid      : "#1e1e3a",
+            text      : "#6a5a4a",
+            fill_csp  : "rgba(139,26,26,0.12)",
+            fill_fcfs : "rgba(58,90,138,0.10)",
+            tooltip_bg: "#0f0f1a",
+            tooltip_border: "#8b1a1a"
+          }
+        : {
+            csp       : "#2563eb",
+            fcfs      : "#ea580c",
+            grid      : "#e2e8f0",
+            text      : "#475569",
+            fill_csp  : "rgba(37,99,235,0.08)",
+            fill_fcfs : "rgba(234,88,12,0.08)",
+            tooltip_bg: "#0f172a",
+            tooltip_border: "#334155"
+          };
+    }
+
     class ChartBase {
       constructor(canvasId) {
         this.canvas  = document.getElementById(canvasId);
         this.ctx     = this.canvas.getContext("2d");
-        this.colors  = { csp: "#2563eb", fcfs: "#ea580c", grid: "#e2e8f0", text: "#475569", tooltip: "#0f172a" };
+        this.colors  = getChartColors();
         this.fonts   = { label: "11px 'JetBrains Mono', monospace", title: "600 13px 'Inter', sans-serif" };
         this._setupHiDPI();
       }
@@ -702,7 +1122,13 @@
         this.width  = rect.width;
         this.height = rect.height;
       }
-      clear() { this.ctx.clearRect(0, 0, this.width, this.height); }
+      clear() { 
+        this.ctx.clearRect(0, 0, this.width, this.height); 
+        if (document.documentElement.classList.contains("theme-horror")) {
+          this.ctx.fillStyle = "#0a0a0f";
+          this.ctx.fillRect(0, 0, this.width, this.height);
+        }
+      }
       animateDraw(drawFn, duration = 800) {
         const start = performance.now();
         const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
@@ -1113,9 +1539,20 @@
     window.pauseClock = pauseClock;
     window.resetClock = resetClock;
 
+    function checkEmergencyState() {
+      if (!state.csp.stats || !state.fcfs.stats) return;
+      const totalDeceased = state.csp.stats.deceased + state.fcfs.stats.deceased;
+      if (totalDeceased >= 3) {
+        document.documentElement.classList.add("emergency-active");
+      } else {
+        document.documentElement.classList.remove("emergency-active");
+      }
+    }
+
     function onTick() {
       state.simTime += SPEED_MAP[state.speed];
       bus.emit("tick", state.simTime);
+      checkEmergencyState();
       checkEndCondition();
     }
 
@@ -1172,7 +1609,7 @@
       }
       
       container.innerHTML = q.map(p => `
-        <div class="patient-card patient-arrive ${p.isAtRisk ? 'at-risk' : ''}" style="border-left-color: var(--sev-${p.severity})">
+        <div class="patient-card patient-arrive severity-${p.severity}-card ${p.isAtRisk ? 'at-risk' : ''}" style="border-left-color: var(--sev-${p.severity})">
           <div style="display:flex; justify-content:space-between; align-items:flex-start;">
             <div style="font-weight:600; font-size:13px;">${p.name} <span class="text-3">#${p.id}</span></div>
             <div style="font-size:11px; font-weight:600; padding:2px 6px; border-radius:4px; background:var(--sev-${p.severity}); color:white;">Sev ${p.severity}</div>
@@ -1200,8 +1637,10 @@
       const badge = container.parentElement.querySelector('.badge');
       badge.textContent = `${util}% utilized`;
 
-      container.innerHTML = units.map(u => `
-        <div class="unit-card ${u.isBusy ? 'unit-busy' : ''}" style="border-left-color: ${u.isBusy ? 'var(--orange)' : 'var(--green)'}">
+      container.innerHTML = units.map(u => {
+        const typeClass = u.label.toLowerCase().includes('ecg') ? 'resource-ecg' : 'resource-generic';
+        return `
+        <div class="unit-card ${typeClass} ${u.isBusy ? 'unit-busy busy' : 'available'}" style="border-left-color: ${u.isBusy ? 'var(--orange)' : 'var(--green)'}">
           <div class="unit-header">
             <div class="unit-title">${u.label}</div>
             <div class="unit-status" style="background:${u.isBusy ? 'var(--orange-light)' : 'var(--green-light)'}; color:${u.isBusy ? 'var(--orange)' : 'var(--green)'}">
@@ -1216,7 +1655,7 @@
                 <span>${Math.ceil(u.remainingTime)}s left</span>
               </div>
               <div style="height:4px; background:var(--surface-2); border-radius:2px; margin-top:4px; overflow:hidden;">
-                <div style="height:100%; width:${((u.totalTime - u.remainingTime) / u.totalTime) * 100}%; background:var(--accent); transition: width 0.1s linear;"></div>
+                <div class="progress-bar-fill" style="height:100%; width:${((u.totalTime - u.remainingTime) / u.totalTime) * 100}%; transition: width 0.1s linear;"></div>
               </div>
             </div>
           ` : `
@@ -1228,7 +1667,8 @@
             </div>
           ` : ''}
         </div>
-      `).join('');
+        `;
+      }).join('');
     }
 
     function renderStats(algo) {
@@ -1268,6 +1708,7 @@
       const div = document.createElement("div");
       div.style.padding = "4px 0";
       div.style.borderBottom = "1px solid var(--border-2)";
+      div.className = "log-entry " + data.type;
       div.innerHTML = `<span style="color:var(--text-3); margin-right:4px;">[${formatTime(state.simTime)}]</span> ${icon} ${msg}`;
       container.prepend(div);
       
@@ -1359,38 +1800,40 @@
 
       // Draw Phase 3 Charts
       if (cspStats && fcfsStats) {
-        setTimeout(() => {
-          const lineChart = new LineChart('chart-waittime');
-          lineChart.update(
-            cspStats.waitTimeSeries.map(s => ({ t: s.t, val: s.avgWait })),
-            fcfsStats.waitTimeSeries.map(s => ({ t: s.t, val: s.avgWait }))
-          );
-          
-          const areaChart = new AreaChart('chart-queue');
-          areaChart.update(
-            cspStats.queueLengthSeries.map(s => ({ t: s.t, val: s.length })),
-            fcfsStats.queueLengthSeries.map(s => ({ t: s.t, val: s.length }))
-          );
-
-          const barChart = new BarChart('chart-utilization');
-          barChart.update(
-            cspStats.computeUtilization(cspEngine.resourceUnits, state.simTime),
-            fcfsStats.computeUtilization(fcfsEngine.resourceUnits, state.simTime)
-          );
-
-          const donutChart = new DonutChart('chart-severity');
-          const severities = {1:0, 2:0, 3:0, 4:0, 5:0};
-          state.patients.forEach(p => severities[p.severity]++);
-          donutChart.update(severities);
-
-          const mortChart = new MortalityChart('chart-mortality');
-          mortChart.update(state.csp.stats, state.fcfs.stats);
-
-        }, 500); // Wait for panel reveal animation
+        setTimeout(window.redrawAllCharts, 500); // Wait for panel reveal animation
       }
       
       window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     }
+
+    window.redrawAllCharts = function() {
+      if (!cspStats || !fcfsStats || state.status !== 'finished') return;
+      const lineChart = new LineChart('chart-waittime');
+      lineChart.update(
+        cspStats.waitTimeSeries.map(s => ({ t: s.t, val: s.avgWait })),
+        fcfsStats.waitTimeSeries.map(s => ({ t: s.t, val: s.avgWait }))
+      );
+      
+      const areaChart = new AreaChart('chart-queue');
+      areaChart.update(
+        cspStats.queueLengthSeries.map(s => ({ t: s.t, val: s.length })),
+        fcfsStats.queueLengthSeries.map(s => ({ t: s.t, val: s.length }))
+      );
+
+      const barChart = new BarChart('chart-utilization');
+      barChart.update(
+        cspStats.computeUtilization(cspEngine.resourceUnits, state.simTime),
+        fcfsStats.computeUtilization(fcfsEngine.resourceUnits, state.simTime)
+      );
+
+      const donutChart = new DonutChart('chart-severity');
+      const severities = {1:0, 2:0, 3:0, 4:0, 5:0};
+      state.patients.forEach(p => severities[p.severity]++);
+      donutChart.update(severities);
+
+      const mortChart = new MortalityChart('chart-mortality');
+      mortChart.update(state.csp.stats, state.fcfs.stats);
+    };
     
     function showToast(msg, type = 'success') {
       const container = document.getElementById('toast-container');
@@ -1683,6 +2126,49 @@
       }
     }, 100);
 
+    // Theme Toggle Logic
+    const themeToggle = document.getElementById("theme-toggle");
+    const iconLight   = document.getElementById("icon-light");
+    const iconHorror  = document.getElementById("icon-horror");
+
+    function applyTheme(theme) {
+      if (theme === "horror") {
+        document.documentElement.classList.add("theme-horror");
+        iconLight.style.display  = "none";
+        iconHorror.style.display = "block";
+        injectHorrorOverlay();
+      } else {
+        document.documentElement.classList.remove("theme-horror");
+        document.documentElement.classList.remove("emergency-active");
+        iconLight.style.display  = "block";
+        iconHorror.style.display = "none";
+        removeHorrorOverlay();
+      }
+      localStorage.setItem("medialloc-theme", theme);
+      if (window.redrawAllCharts) window.redrawAllCharts();
+    }
+
+    function injectHorrorOverlay() {
+      if (document.getElementById("horror-overlay")) return;
+      const div = document.createElement("div");
+      div.id = "horror-overlay";
+      document.body.appendChild(div);
+    }
+
+    function removeHorrorOverlay() {
+      document.getElementById("horror-overlay")?.remove();
+    }
+
+    themeToggle.addEventListener("click", () => {
+      const current = localStorage.getItem("medialloc-theme") ?? "light";
+      applyTheme(current === "horror" ? "light" : "horror");
+    });
+
+    // On page load
+    (function initTheme() {
+      const saved = localStorage.getItem("medialloc-theme") ?? "light";
+      applyTheme(saved);
+    })();
   </script>
 </body>
 </html>
